@@ -54,9 +54,9 @@ class ConvertUtils {
     required RequestType type,
     PMFilter? filterOption,
   }) {
-    final int? modified = data['modified'] as int?;
+    final double? modified = data['modified'] as double?;
     final DateTime? lastModified = modified != null
-        ? DateTime.fromMillisecondsSinceEpoch(modified * 1000)
+        ? DateTime.fromMillisecondsSinceEpoch((modified * 1000).toInt())
         : null;
     AlbumType? albumTypeEx;
     if (Platform.isIOS || Platform.isMacOS) {
