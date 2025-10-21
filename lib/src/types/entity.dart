@@ -712,7 +712,7 @@ class AssetEntity {
   ///
   /// See also:
   ///  * [duration] which is the duration of the asset, but in different units.
-  Duration get videoDuration => Duration(milliseconds: (duration * 1000) as int);
+  Duration get videoDuration => Duration(milliseconds: (duration * 1000).toInt());
 
   /// The [Size] for the asset.
   Size get size => Size(width.toDouble(), height.toDouble());
@@ -723,7 +723,7 @@ class AssetEntity {
   /// The create time of the asset in [DateTime].
   DateTime get createDateTime {
     final double value = createDateSecond ?? 0;
-    return DateTime.fromMillisecondsSinceEpoch((value * 1000) as int);
+    return DateTime.fromMillisecondsSinceEpoch((value * 1000).toInt());
   }
 
   /// The modified time in unix timestamp of the asset.
@@ -732,7 +732,7 @@ class AssetEntity {
   /// The modified time of the asset in [DateTime].
   DateTime get modifiedDateTime {
     final double value = modifiedDateSecond ?? 0;
-    return DateTime.fromMillisecondsSinceEpoch((value * 1000) as int);
+    return DateTime.fromMillisecondsSinceEpoch((value * 1000).toInt());
   }
 
   /// Check whether the asset has been deleted.
