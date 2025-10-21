@@ -184,20 +184,20 @@ interface IDBUtils {
         }
 
         val date = if (isAboveAndroidQ) {
-            var tmpTime = getLong(DATE_TAKEN) / 1000
-            if (tmpTime == 0L) {
-                tmpTime = getLong(DATE_ADDED)
+            var tmpTime = getLong(DATE_TAKEN).toDouble() / 1000.0
+            if (tmpTime == 0.0) {
+                tmpTime = getLong(DATE_ADDED).toDouble()
             }
             tmpTime
-        } else getLong(DATE_ADDED)
+        } else getLong(DATE_ADDED).toDouble()
         val type = getInt(MediaStore.Files.FileColumns.MEDIA_TYPE)
         val mimeType = getString(MIME_TYPE)
-        val duration = if (type == MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE) 0
-        else getLong(DURATION)
+        val duration = if (type == MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE) 0.0
+        else getLong(DURATION).toDouble() / 1000.0
         var width = getInt(WIDTH)
         var height = getInt(HEIGHT)
         val displayName = getString(DISPLAY_NAME)
-        val modifiedDate = getLong(DATE_MODIFIED)
+        val modifiedDate = getLong(DATE_MODIFIED).toDouble()
         var orientation: Int = getInt(ORIENTATION)
         val relativePath: String? = if (isAboveAndroidQ) {
             getString(RELATIVE_PATH)
@@ -627,7 +627,7 @@ interface IDBUtils {
         }
     }
 
-    fun getPathModifiedDate(context: Context, pathId: String): Long? {
+    fun getPathModifiedDate(context: Context, pathId: String): Double? {
         val columns = arrayOf(DATE_MODIFIED)
         val sortOrder = "$DATE_MODIFIED desc"
         val cursor = if (pathId == PhotoManager.ALL_ID) {
@@ -643,7 +643,7 @@ interface IDBUtils {
         }
         cursor.use {
             if (it.moveToNext()) {
-                return it.getLong(DATE_MODIFIED)
+                return it.getLong(DATE_MODIFIED).toDouble()
             }
         }
         return null

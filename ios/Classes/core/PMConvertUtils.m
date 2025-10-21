@@ -68,9 +68,9 @@
 }
 
 + (NSDictionary *)convertPHAssetToMap:(PHAsset *)asset needTitle:(BOOL)needTitle {
-    long createDt = (long) asset.creationDate.timeIntervalSince1970;
-    long modifiedDt = (long) asset.modificationDate.timeIntervalSince1970;
-    long duration = (long) asset.duration;
+    double createDt = (double) asset.creationDate.timeIntervalSince1970;
+    double modifiedDt = (double) asset.modificationDate.timeIntervalSince1970;
+    double duration = (double) asset.duration;
     
     int typeInt = 0;
     if (asset.isVideo) {

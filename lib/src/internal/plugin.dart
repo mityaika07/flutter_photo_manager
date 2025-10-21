@@ -673,7 +673,7 @@ class PhotoManagerPlugin with BasePlugin, IosPlugin, AndroidPlugin, OhosPlugin {
     return ConvertUtils.convertToAssetList(result.cast());
   }
 
-  Future<int> getDurationWithOptions(String id, {int? subtype}) async {
+  Future<double> getDurationWithOptions(String id, {int? subtype}) async {
     if (Platform.isIOS || Platform.isMacOS) {
       if (subtype != null) {
         final result = await _channel.invokeMethod(
@@ -683,7 +683,7 @@ class PhotoManagerPlugin with BasePlugin, IosPlugin, AndroidPlugin, OhosPlugin {
             'subtype': subtype,
           },
         );
-        return result as int;
+        return result as double;
       }
     }
     final entity = await AssetEntity.fromId(id);

@@ -244,7 +244,7 @@
             entity.assetCount = fetchResult.count;
             if (fetchResult.count > 0) {
                 PHAsset *asset = fetchResult.firstObject;
-                entity.modifiedDate = (long) asset.modificationDate.timeIntervalSince1970;
+                entity.modifiedDate = (double) asset.modificationDate.timeIntervalSince1970;
             }
         }
         
@@ -381,16 +381,16 @@
     }
     
     NSDate *date = asset.creationDate;
-    long createDt = (long) date.timeIntervalSince1970;
+    double createDt = (double) date.timeIntervalSince1970;
     
     NSDate *modifiedDate = asset.modificationDate;
-    long modifiedTimeStamp = (long) modifiedDate.timeIntervalSince1970;
+    double modifiedTimeStamp = (double) modifiedDate.timeIntervalSince1970;
     
     PMAssetEntity *entity = [PMAssetEntity entityWithId:asset.localIdentifier
                                                createDt:createDt
                                                   width:asset.pixelWidth
                                                  height:asset.pixelHeight
-                                               duration:(long) asset.duration
+                                               duration:(double) asset.duration
                                                    type:type];
     entity.phAsset = asset;
     entity.modifiedDt = modifiedTimeStamp;
@@ -1864,7 +1864,7 @@
         
         PHFetchResult<PHAsset *> *assets = [PHAsset fetchAssetsInAssetCollection:collection options:options];
         PHAsset *asset = assets.firstObject;
-        path.modifiedDate = (long) asset.modificationDate.timeIntervalSince1970;
+        path.modifiedDate = (double) asset.modificationDate.timeIntervalSince1970;
     }
 }
 

@@ -440,12 +440,12 @@ class AssetEntity {
   ///
   /// See also:
   ///  * [videoDuration] which is a duration getter for videos.
-  final int duration;
+  final double duration;
 
   /// Obtain the duration with the given options.
   ///
   /// [withSubtype] only works on iOS/macOS.
-  Future<int> durationWithOptions({bool withSubtype = false}) async {
+  Future<double> durationWithOptions({bool withSubtype = false}) async {
     if (withSubtype) {
       return plugin.getDurationWithOptions(id, subtype: subtype);
     }
@@ -712,27 +712,27 @@ class AssetEntity {
   ///
   /// See also:
   ///  * [duration] which is the duration of the asset, but in different units.
-  Duration get videoDuration => Duration(seconds: duration);
+  Duration get videoDuration => Duration(milliseconds: (duration * 1000) as int);
 
   /// The [Size] for the asset.
   Size get size => Size(width.toDouble(), height.toDouble());
 
   /// The create time in unix timestamp of the asset.
-  final int? createDateSecond;
+  final double? createDateSecond;
 
   /// The create time of the asset in [DateTime].
   DateTime get createDateTime {
-    final int value = createDateSecond ?? 0;
-    return DateTime.fromMillisecondsSinceEpoch(value * 1000);
+    final double value = createDateSecond ?? 0;
+    return DateTime.fromMillisecondsSinceEpoch((value * 1000) as int);
   }
 
   /// The modified time in unix timestamp of the asset.
-  final int? modifiedDateSecond;
+  final double? modifiedDateSecond;
 
   /// The modified time of the asset in [DateTime].
   DateTime get modifiedDateTime {
-    final int value = modifiedDateSecond ?? 0;
-    return DateTime.fromMillisecondsSinceEpoch(value * 1000);
+    final double value = modifiedDateSecond ?? 0;
+    return DateTime.fromMillisecondsSinceEpoch((value * 1000) as int);
   }
 
   /// Check whether the asset has been deleted.
@@ -891,12 +891,12 @@ class AssetEntity {
     int? typeInt,
     int? width,
     int? height,
-    int? duration,
+    double? duration,
     int? orientation,
     bool? isFavorite,
     String? title,
-    int? createDateSecond,
-    int? modifiedDateSecond,
+    double? createDateSecond,
+    double? modifiedDateSecond,
     String? relativePath,
     double? latitude,
     double? longitude,
